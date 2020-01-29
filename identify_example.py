@@ -54,9 +54,9 @@ s.add(
 	Exists([l1],
 		And(
 			mu_p1 +  ((t1_p1-p1_t1)*s1_t1 + (t2_p1-p1_t2)*s1_t2 + (t3_p1-p1_t3)*s1_t3) + l1 * (f_p1 - p1_f) >= p1_t3, 
-	        mu_p2 +  ((t1_p2-p2_t1)*s1_t1 + (t2_p2-p2_t2)*s1_t2 + (t3_p2-p2_t3)*s1_t3) + l1 * (f_p2 - p2_f) >= p2_t3,
-	        mu_p3 +  ((t1_p3-p3_t1)*s1_t1 + (t2_p3-p3_t2)*s1_t2 + (t3_p3-p3_t3)*s1_t3) + l1 * (f_p3 - p3_f) >= p3_t3
-	        )
+			mu_p2 +  ((t1_p2-p2_t1)*s1_t1 + (t2_p2-p2_t2)*s1_t2 + (t3_p2-p2_t3)*s1_t3) + l1 * (f_p2 - p2_f) >= p2_t3,
+			mu_p3 +  ((t1_p3-p3_t1)*s1_t1 + (t2_p3-p3_t2)*s1_t2 + (t3_p3-p3_t3)*s1_t3) + l1 * (f_p3 - p3_f) >= p3_t3
+		)
 	)
 )
 
@@ -65,9 +65,9 @@ s.add(
 	Exists([l2],
 		And(
 			mu_p1 +  ((t1_p1-p1_t1)*s2_t1 + (t2_p1-p1_t2)*s2_t2 + (t3_p1-p1_t3)*s2_t3) + l2 * (f_p1 - p1_f) >= p1_t1,
-		    mu_p2 +  ((t1_p2-p2_t1)*s2_t1 + (t2_p2-p2_t2)*s2_t2 + (t3_p2-p2_t3)*s2_t3) + l2 * (f_p2 - p2_f) >= p2_t1,
-		    mu_p3 +  ((t1_p3-p3_t1)*s2_t1 + (t2_p3-p3_t2)*s2_t2 + (t3_p3-p3_t3)*s2_t3) + l2 * (f_p3 - p3_f) >= p3_t1
-		    ) 
+			mu_p2 +  ((t1_p2-p2_t1)*s2_t1 + (t2_p2-p2_t2)*s2_t2 + (t3_p2-p2_t3)*s2_t3) + l2 * (f_p2 - p2_f) >= p2_t1,
+			mu_p3 +  ((t1_p3-p3_t1)*s2_t1 + (t2_p3-p3_t2)*s2_t2 + (t3_p3-p3_t3)*s2_t3) + l2 * (f_p3 - p3_f) >= p3_t1
+		)
 	)
 )
 
@@ -76,9 +76,9 @@ s.add(
 	Exists([l3],
 		And(
 			mu_p1 +  ((t1_p1-p1_t1)*s3_t1 + (t2_p1-p1_t2)*s3_t2 + (t3_p1-p1_t3)*s3_t3) + l3 * (f_p1 - p1_f) >= p1_t2,
-		    mu_p2 +  ((t1_p2-p2_t1)*s3_t1 + (t2_p2-p2_t2)*s3_t2 + (t3_p2-p2_t3)*s3_t3) + l3 * (f_p2 - p2_f) >= p2_t2,
-		    mu_p3 +  ((t1_p3-p3_t1)*s3_t1 + (t2_p3-p3_t2)*s3_t2 + (t3_p3-p3_t3)*s3_t3) + l3 * (f_p3 - p3_f) >= p3_t2
-		    ) 
+			mu_p2 +  ((t1_p2-p2_t1)*s3_t1 + (t2_p2-p2_t2)*s3_t2 + (t3_p2-p2_t3)*s3_t3) + l3 * (f_p2 - p2_f) >= p2_t2,
+			mu_p3 +  ((t1_p3-p3_t1)*s3_t1 + (t2_p3-p3_t2)*s3_t2 + (t3_p3-p3_t3)*s3_t3) + l3 * (f_p3 - p3_f) >= p3_t2
+		)
 	)
 )
 
@@ -87,9 +87,9 @@ s.add(
 	Exists([l4],
 		And(
 			mu_p1 +  ((t1_p1-p1_t1)*s4_t1 + (t2_p1-p1_t2)*s4_t2 + (t3_p1-p1_t3)*s4_t3) + l4 * (f_p1 - p1_f) >= p1_t1,
-		    mu_p2 +  ((t1_p2-p2_t1)*s4_t1 + (t2_p2-p2_t2)*s4_t2 + (t3_p2-p2_t3)*s4_t3) + l4 * (f_p2 - p2_f) >= p2_t1,
-		    mu_p3 +  ((t1_p3-p3_t1)*s4_t1 + (t2_p3-p3_t2)*s4_t2 + (t3_p3-p3_t3)*s4_t3) + l4 * (f_p3 - p3_f) >= p3_t1
-		    ) 
+			mu_p2 +  ((t1_p2-p2_t1)*s4_t1 + (t2_p2-p2_t2)*s4_t2 + (t3_p2-p2_t3)*s4_t3) + l4 * (f_p2 - p2_f) >= p2_t1,
+			mu_p3 +  ((t1_p3-p3_t1)*s4_t1 + (t2_p3-p3_t2)*s4_t2 + (t3_p3-p3_t3)*s4_t3) + l4 * (f_p3 - p3_f) >= p3_t1
+		)
 	)
 )
 

@@ -97,6 +97,7 @@ s.add(
 # mu0(p) + C(p) * pi(\sigma) + l * (Post(p,f) - Pre(p,f) <  Pre(p,tj)
 # for all l \in N mu0(p) + C(p) * pi(\sigma) + l * (Post(p,f) - Pre(p,f) < Pre(p,tj) for some p \in P
 
+# TODO include the remainder inequalities if \sigma tj \not\in L^f...
 
 print s
 print s.check()

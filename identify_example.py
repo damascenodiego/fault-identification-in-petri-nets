@@ -7,10 +7,11 @@ from z3 import *
 mu_p1, mu_p2, mu_p3 = 0,0,1
 
 ## pi(\sigma) be the number of times each transition has been activated given sequence \sigma; 
-s1_t1, s1_t2, s1_t3 = 0,0,1 # s1 = t3
-s2_t1, s2_t2, s2_t3 = 1,0,0 # s2 = t1
-s3_t1, s3_t2, s3_t3 = 1,1,0 # s3 = t1 t2
-s4_t1, s4_t2, s4_t3 = 2,1,0 # s4 = t1 t2 t1
+
+s1_t1, s1_t2, s1_t3 = 0,0,0 # \sigma \cdot s1 = \empty t3
+s2_t1, s2_t2, s2_t3 = 0,0,0 # \sigma \cdot s2 = \empty t1
+s3_t1, s3_t2, s3_t3 = 1,0,0 # \sigma \cdot s3 =    t1  t2
+s4_t1, s4_t2, s4_t3 = 1,1,0 # \sigma \cdot s4 = t1 t2  t1
 
 
 ## l \in Naturals ; 
@@ -39,8 +40,8 @@ s = Solver()
 
 
 s.add(
-	And(f_p2 == 0,f_p3 == 0,p1_f == 0,p2_f == 0,p3_f == 1,f_p1 == 1) # expected solution
-	# And(f_p1 >= 0,f_p2 >= 0,f_p3 >= 0,p1_f >= 0,p2_f >= 0,p3_f >= 0)
+	# And(f_p2 == 0,f_p3 == 0,p1_f == 0,p2_f == 0,p3_f == 1,f_p1 == 1) # expected solution
+	And(f_p1 >= 0,f_p2 >= 0,f_p3 >= 0,p1_f >= 0,p2_f >= 0,p3_f >= 0)
 	)
 
 
@@ -53,9 +54,9 @@ s.add(And(l1 >= 0,l2 >= 1,l3 >= 1,l4 >= 1,)) # l>=M (To check...)
 s.add(
 	Exists([l1],
 		And(
-		mu_p1 +  ((t1_p1-p1_t1)*s1_t1 + (t2_p1-p1_t2)*s1_t2 + (t3_p1-p1_t3)*s1_t3) + l1 * (f_p1 - p1_f) >= p1_t3, 
+		mu_p1 +  ((t1_p1-p1_t1)*s1_t1 + (t2_p1-p1_t2)*s1_t2 + (t3_p1-p1_t3)*s1_t3) + l1 * (f_p1 - p1_f) >= p1_t3,
 		mu_p2 +  ((t1_p2-p2_t1)*s1_t1 + (t2_p2-p2_t2)*s1_t2 + (t3_p2-p2_t3)*s1_t3) + l1 * (f_p2 - p2_f) >= p2_t3,
-		mu_p3 +  ((t1_p3-p3_t1)*s1_t1 + (t2_p3-p3_t2)*s1_t2 + (t3_p3-p3_t3)*s1_t3) + l1 * (f_p3 - p3_f) >= p3_t3
+		mu_p3 +  ((t1_p3-p3_t1)*s1_t1 + (t2_p3-p3_t2)*s1_t2 + (t3_p3-p3_t3)*s1_t3) + l1 * (f_p3 - p3_f) >= p3_t3,
 		)
 	)
 )
@@ -66,7 +67,7 @@ s.add(
 		And(
 		mu_p1 +  ((t1_p1-p1_t1)*s2_t1 + (t2_p1-p1_t2)*s2_t2 + (t3_p1-p1_t3)*s2_t3) + l2 * (f_p1 - p1_f) >= p1_t1,
 		mu_p2 +  ((t1_p2-p2_t1)*s2_t1 + (t2_p2-p2_t2)*s2_t2 + (t3_p2-p2_t3)*s2_t3) + l2 * (f_p2 - p2_f) >= p2_t1,
-		mu_p3 +  ((t1_p3-p3_t1)*s2_t1 + (t2_p3-p3_t2)*s2_t2 + (t3_p3-p3_t3)*s2_t3) + l2 * (f_p3 - p3_f) >= p3_t1
+		mu_p3 +  ((t1_p3-p3_t1)*s2_t1 + (t2_p3-p3_t2)*s2_t2 + (t3_p3-p3_t3)*s2_t3) + l2 * (f_p3 - p3_f) >= p3_t1,
 		)
 	)
 )
@@ -77,7 +78,7 @@ s.add(
 		And(
 		mu_p1 +  ((t1_p1-p1_t1)*s3_t1 + (t2_p1-p1_t2)*s3_t2 + (t3_p1-p1_t3)*s3_t3) + l3 * (f_p1 - p1_f) >= p1_t2,
 		mu_p2 +  ((t1_p2-p2_t1)*s3_t1 + (t2_p2-p2_t2)*s3_t2 + (t3_p2-p2_t3)*s3_t3) + l3 * (f_p2 - p2_f) >= p2_t2,
-		mu_p3 +  ((t1_p3-p3_t1)*s3_t1 + (t2_p3-p3_t2)*s3_t2 + (t3_p3-p3_t3)*s3_t3) + l3 * (f_p3 - p3_f) >= p3_t2
+		mu_p3 +  ((t1_p3-p3_t1)*s3_t1 + (t2_p3-p3_t2)*s3_t2 + (t3_p3-p3_t3)*s3_t3) + l3 * (f_p3 - p3_f) >= p3_t2,
 		)
 	)
 )
@@ -88,7 +89,7 @@ s.add(
 		And(
 		mu_p1 +  ((t1_p1-p1_t1)*s4_t1 + (t2_p1-p1_t2)*s4_t2 + (t3_p1-p1_t3)*s4_t3) + l4 * (f_p1 - p1_f) >= p1_t1,
 		mu_p2 +  ((t1_p2-p2_t1)*s4_t1 + (t2_p2-p2_t2)*s4_t2 + (t3_p2-p2_t3)*s4_t3) + l4 * (f_p2 - p2_f) >= p2_t1,
-		mu_p3 +  ((t1_p3-p3_t1)*s4_t1 + (t2_p3-p3_t2)*s4_t2 + (t3_p3-p3_t3)*s4_t3) + l4 * (f_p3 - p3_f) >= p3_t1
+		mu_p3 +  ((t1_p3-p3_t1)*s4_t1 + (t2_p3-p3_t2)*s4_t2 + (t3_p3-p3_t3)*s4_t3) + l4 * (f_p3 - p3_f) >= p3_t1,
 		)
 	)
 )

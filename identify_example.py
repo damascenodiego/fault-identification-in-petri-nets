@@ -8,10 +8,10 @@ mu_p1, mu_p2, mu_p3 = 0,0,1
 
 ## pi(\sigma) be the number of times each transition has been activated given sequence \sigma; 
 
-s1_t1, s1_t2, s1_t3 = 0,0,0 # \sigma \cdot s1 = \empty t3
-s2_t1, s2_t2, s2_t3 = 0,0,0 # \sigma \cdot s2 = \empty t1
-s3_t1, s3_t2, s3_t3 = 1,0,0 # \sigma \cdot s3 =    t1  t2
-s4_t1, s4_t2, s4_t3 = 1,1,0 # \sigma \cdot s4 = t1 t2  t1
+s1_t1, s1_t2, s1_t3 = 0,0,0 # \sigma t_j = \empty t3
+s2_t1, s2_t2, s2_t3 = 0,0,0 # \sigma t_j = \empty t1
+s3_t1, s3_t2, s3_t3 = 1,0,0 # \sigma t_j =    t1  t2
+s4_t1, s4_t2, s4_t3 = 1,1,0 # \sigma t_j = t1 t2  t1
 
 
 ## l \in Naturals ; 

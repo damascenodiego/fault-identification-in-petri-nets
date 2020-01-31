@@ -1,0 +1,36 @@
+places
+3
+p1
+p2
+p3
+
+transitions
+3
+t1
+t2
+t3
+
+mu0
+0
+0
+1
+
+pre
+1 0 0
+0 1 0
+0 0 1
+
+post
+0 1 0
+1 0 0
+0 0 0
+
+in_Lf
+4
+t3
+f,t1
+f,t1,t2
+f,t1,t2,t1
+
+not_in_Lf
+0

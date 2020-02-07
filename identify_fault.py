@@ -125,8 +125,22 @@ try:
 		_counter = {transitions[_tn]:0 for _tn in range(n_trs)}
 		_counter['f'] = 0
 		
-		print(in_Lf[_sn])
-		print(_counter)
+		# print(in_Lf[_sn])
+		last_transition = in_Lf[_sn][-1]
+		# print(_counter)
+		print('s.add(')
+		print('   Exists([l%d],'%_sn)
+		print('      And(')
+		for _pn in range(n_places):
+			line = '         mu_'+places[_pn]+' + '
+			line += ' + '.join(['('+transitions[_tn]+'_'+places[_pn]+'-'+places[_pn]+'_'+transitions[_tn]+')*s'+str(_sn)+'_'+transitions[_tn] for _tn in range(n_trs)])
+			line += ' + '+'l'+str(_sn)+' * ('+'f_'+places[_pn]+' - '+places[_pn]+'_f'+')'
+			line += ' >= '+places[_pn]+'_'+last_transition
+			print(line)
+		print('      )')
+		print('   )')
+		print(')')
+		print('')
 
 except Exception as e:
 	print(e)

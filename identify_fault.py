@@ -94,6 +94,8 @@ try:
 	print('')
 	print('from z3 import *')
 	print('')
+	print('# we have that')
+	print('s = Solver()')
 	print('## mu0_px is the initial marking for place px; ')
 	print('%s = %s' % (\
 		', '.join(['mu_'+places[_pn] for _pn in range(n_places)]), \
@@ -111,23 +113,53 @@ try:
 	print('## tj_pi is the post-condition from transition tj to place pi')
 	for _pn in range(n_places):
 		print('%s = %s' % (\
-		', '.join([transitions[_tn]+'_'+places[_pn] for _tn in range(n_trs)]), \
-		', '.join([post[places[_pn]][transitions[_tn]] for _tn in range(n_trs)])) \
-	)
+			', '.join([transitions[_tn]+'_'+places[_pn] for _tn in range(n_trs)]), \
+			', '.join([post[places[_pn]][transitions[_tn]] for _tn in range(n_trs)]))
+		)
 	print('')
-	print('## find the values for these variables')
+	print('## find the values for the faulty transitions ')
 	for _pn in range(n_places):
 		print('f_%s, %s_f = Ints(\'f_%s %s_f\')' % (places[_pn],places[_pn],places[_pn],places[_pn]))
-
 	print('')
-	print('## \\in L^f')
+	print('# where they should be ')
+	print('s.add( %s )' % ', '.join('f_%s >= 0' % places[_pn] for _pn in range(n_places)))
+	print('s.add( %s )' % ', '.join('%s_f >= 0' % places[_pn] for _pn in range(n_places)))
+	print('')
+	print('## l \\in Naturals ; ')
+	# print('%s = Ints(\'%s\')' % (\
+	# 	', '.join(['l'+str(_sn) for _sn in range(sz_Lf)]), \
+	# 	' '.join(['l'+str(_sn) for _sn in range(sz_Lf)])
+	# 	)
+	# )
+	# print('%s = Ints(\'%s\')' % (\
+	# 	', '.join(['l'+str(_sn+sz_Lf) for _sn in range(sz_not_in_Lf)]), \
+	# 	' ' .join(['l'+str(_sn+sz_Lf) for _sn in range(sz_not_in_Lf)])
+	# 	)
+	# )	
+
+	for _sn in range(sz_Lf): print('l'+str(_sn)+' = Int(\'l'+str(_sn)+'\')')
+	for _sn in range(sz_not_in_Lf): print('l'+str(_sn+sz_Lf)+' = Int(\'l'+str(_sn+sz_Lf)+'\')')
+	print('')
+	print('########################################')
+	print('## \\in L^f (Equation 4.1)')
+	print('########################################')
 	for _sn in range(sz_Lf):
+		# set counters for each symbol to zero
 		_counter = {transitions[_tn]:0 for _tn in range(n_trs)}
-		_counter['f'] = 0
-		
-		# print(in_Lf[_sn])
+		_counter['f'] = 0 # set counters for f to zero
+		# count for all symbols, except the last
+		for _idx in range(len(in_Lf[_sn])-1):
+			_counter[in_Lf[_sn][_idx]]+=1
+		# get the last symbol
 		last_transition = in_Lf[_sn][-1]
 		# print(_counter)
+		print('# Sequence %d: %s' % (_sn,','.join(in_Lf[_sn])))
+		print('%s = %s' % (\
+			', '.join(['s'+str(_sn)+'_'+transitions[_tn] for _tn in range(n_trs)]), \
+			', '.join([ str(_counter[transitions[_tn]]) for _tn in range(n_trs)]))
+		)
+		print('s.add( l%d >= %d )' % (_sn,_counter['f']))
+		# print('')		
 		print('s.add(')
 		print('   Exists([l%d],'%_sn)
 		print('      And(')
@@ -135,12 +167,52 @@ try:
 			line = '         mu_'+places[_pn]+' + '
 			line += ' + '.join(['('+transitions[_tn]+'_'+places[_pn]+'-'+places[_pn]+'_'+transitions[_tn]+')*s'+str(_sn)+'_'+transitions[_tn] for _tn in range(n_trs)])
 			line += ' + '+'l'+str(_sn)+' * ('+'f_'+places[_pn]+' - '+places[_pn]+'_f'+')'
-			line += ' >= '+places[_pn]+'_'+last_transition
+			line += ' >= '+places[_pn]+'_'+last_transition+','
 			print(line)
 		print('      )')
 		print('   )')
 		print(')')
 		print('')
 
+
+	print('')
+	print('########################################')
+	print('## \\not \\in L^f (Equation 4.2)')
+	print('########################################')
+	for _sn in range(sz_not_in_Lf):
+		# set counters for each symbol to zero
+		_counter = {transitions[_tn]:0 for _tn in range(n_trs)}
+		_counter['f'] = 0 # set counters for f to zero
+		# count for all symbols, except the last
+		for _idx in range(len(not_in_Lf[_sn])-1):
+			_counter[not_in_Lf[_sn][_idx]]+=1
+		# get the last symbol
+		last_transition = not_in_Lf[_sn][-1]
+		# print(_counter)
+		print('# Sequence %d: %s' % (_sn+sz_Lf,','.join(not_in_Lf[_sn])))
+		print('%s = %s' % (\
+			', '.join(['s'+str(_sn+sz_Lf)+'_'+transitions[_tn] for _tn in range(n_trs)]), \
+			', '.join([ str(_counter[transitions[_tn]]) for _tn in range(n_trs)]))
+		)
+		print('s.add( l%d >= %d )' % (_sn+sz_Lf,_counter['f']))
+		# print('')		
+		print('s.add(')
+		print('   ForAll([l%d],' % (_sn+sz_Lf))
+		print('      Or(')
+		for _pn in range(n_places):
+			line = '         mu_'+places[_pn]+' + '
+			line += ' + '.join(['('+transitions[_tn]+'_'+places[_pn]+'-'+places[_pn]+'_'+transitions[_tn]+')*s'+str(_sn+sz_Lf)+'_'+transitions[_tn] for _tn in range(n_trs)])
+			line += ' + '+'l'+str(_sn+sz_Lf)+' * ('+'f_'+places[_pn]+' - '+places[_pn]+'_f'+')'
+			line += ' < '+places[_pn]+'_'+last_transition+','
+			print(line)
+		print('      )')
+		print('   )')
+		print(')')
+		print('')
+	print('')
+	print('print(s)')
+	print('print(s.check())')
+	print('print(s.model())')
+	print('#print(s.sexpr());print(\'(check-sat)\\n(get-model)\')')
 except Exception as e:
 	print(e)

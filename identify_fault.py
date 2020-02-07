@@ -212,7 +212,7 @@ try:
 	print('')
 	print('print(s)')
 	print('print(s.check())')
-	print('print(s.model())')
+	print('print(s.model())')	
 	print('#print(s.sexpr());print(\'(check-sat)\\n(get-model)\')')
 except Exception as e:
 	print(e)

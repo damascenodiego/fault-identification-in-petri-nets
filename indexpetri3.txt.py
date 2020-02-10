@@ -47,6 +47,7 @@ l16 = Int('l16')
 l17 = Int('l17')
 l18 = Int('l18')
 l19 = Int('l19')
+l20 = Int('l20')
 
 ########################################
 ## \in L^f (Equation 4.1)
@@ -224,15 +225,15 @@ s.add(
 ########################################
 ## \not \in L^f (Equation 4.2)
 ########################################
-# Sequence 13: t1
+# Sequence 13: t2
 s13_t1, s13_t2, s13_t3 = 0, 0, 0
 s.add( l13 >= 0 )
 s.add(
    ForAll([l13],
       Or(
-         mu_p1 + (t1_p1-p1_t1)*s13_t1 + (t2_p1-p1_t2)*s13_t2 + (t3_p1-p1_t3)*s13_t3 + l13 * (f_p1 - p1_f) < p1_t1,
-         mu_p2 + (t1_p2-p2_t1)*s13_t1 + (t2_p2-p2_t2)*s13_t2 + (t3_p2-p2_t3)*s13_t3 + l13 * (f_p2 - p2_f) < p2_t1,
-         mu_p3 + (t1_p3-p3_t1)*s13_t1 + (t2_p3-p3_t2)*s13_t2 + (t3_p3-p3_t3)*s13_t3 + l13 * (f_p3 - p3_f) < p3_t1,
+         mu_p1 + (t1_p1-p1_t1)*s13_t1 + (t2_p1-p1_t2)*s13_t2 + (t3_p1-p1_t3)*s13_t3 + l13 * (f_p1 - p1_f) < p1_t2,
+         mu_p2 + (t1_p2-p2_t1)*s13_t1 + (t2_p2-p2_t2)*s13_t2 + (t3_p2-p2_t3)*s13_t3 + l13 * (f_p2 - p2_f) < p2_t2,
+         mu_p3 + (t1_p3-p3_t1)*s13_t1 + (t2_p3-p3_t2)*s13_t2 + (t3_p3-p3_t3)*s13_t3 + l13 * (f_p3 - p3_f) < p3_t2,
       )
    )
 )
@@ -250,46 +251,46 @@ s.add(
    )
 )
 
-# Sequence 15: t1,t2,t1
-s15_t1, s15_t2, s15_t3 = 1, 1, 0
+# Sequence 15: t3,t2
+s15_t1, s15_t2, s15_t3 = 0, 0, 1
 s.add( l15 >= 0 )
 s.add(
    ForAll([l15],
       Or(
-         mu_p1 + (t1_p1-p1_t1)*s15_t1 + (t2_p1-p1_t2)*s15_t2 + (t3_p1-p1_t3)*s15_t3 + l15 * (f_p1 - p1_f) < p1_t1,
-         mu_p2 + (t1_p2-p2_t1)*s15_t1 + (t2_p2-p2_t2)*s15_t2 + (t3_p2-p2_t3)*s15_t3 + l15 * (f_p2 - p2_f) < p2_t1,
-         mu_p3 + (t1_p3-p3_t1)*s15_t1 + (t2_p3-p3_t2)*s15_t2 + (t3_p3-p3_t3)*s15_t3 + l15 * (f_p3 - p3_f) < p3_t1,
+         mu_p1 + (t1_p1-p1_t1)*s15_t1 + (t2_p1-p1_t2)*s15_t2 + (t3_p1-p1_t3)*s15_t3 + l15 * (f_p1 - p1_f) < p1_t2,
+         mu_p2 + (t1_p2-p2_t1)*s15_t1 + (t2_p2-p2_t2)*s15_t2 + (t3_p2-p2_t3)*s15_t3 + l15 * (f_p2 - p2_f) < p2_t2,
+         mu_p3 + (t1_p3-p3_t1)*s15_t1 + (t2_p3-p3_t2)*s15_t2 + (t3_p3-p3_t3)*s15_t3 + l15 * (f_p3 - p3_f) < p3_t2,
       )
    )
 )
 
-# Sequence 16: t1,t2,t2
+# Sequence 16: t1,t2,t1
 s16_t1, s16_t2, s16_t3 = 1, 1, 0
 s.add( l16 >= 0 )
 s.add(
    ForAll([l16],
       Or(
-         mu_p1 + (t1_p1-p1_t1)*s16_t1 + (t2_p1-p1_t2)*s16_t2 + (t3_p1-p1_t3)*s16_t3 + l16 * (f_p1 - p1_f) < p1_t2,
-         mu_p2 + (t1_p2-p2_t1)*s16_t1 + (t2_p2-p2_t2)*s16_t2 + (t3_p2-p2_t3)*s16_t3 + l16 * (f_p2 - p2_f) < p2_t2,
-         mu_p3 + (t1_p3-p3_t1)*s16_t1 + (t2_p3-p3_t2)*s16_t2 + (t3_p3-p3_t3)*s16_t3 + l16 * (f_p3 - p3_f) < p3_t2,
+         mu_p1 + (t1_p1-p1_t1)*s16_t1 + (t2_p1-p1_t2)*s16_t2 + (t3_p1-p1_t3)*s16_t3 + l16 * (f_p1 - p1_f) < p1_t1,
+         mu_p2 + (t1_p2-p2_t1)*s16_t1 + (t2_p2-p2_t2)*s16_t2 + (t3_p2-p2_t3)*s16_t3 + l16 * (f_p2 - p2_f) < p2_t1,
+         mu_p3 + (t1_p3-p3_t1)*s16_t1 + (t2_p3-p3_t2)*s16_t2 + (t3_p3-p3_t3)*s16_t3 + l16 * (f_p3 - p3_f) < p3_t1,
       )
    )
 )
 
-# Sequence 17: t1,t3,t1
-s17_t1, s17_t2, s17_t3 = 1, 0, 1
+# Sequence 17: t1,t2,t2
+s17_t1, s17_t2, s17_t3 = 1, 1, 0
 s.add( l17 >= 0 )
 s.add(
    ForAll([l17],
       Or(
-         mu_p1 + (t1_p1-p1_t1)*s17_t1 + (t2_p1-p1_t2)*s17_t2 + (t3_p1-p1_t3)*s17_t3 + l17 * (f_p1 - p1_f) < p1_t1,
-         mu_p2 + (t1_p2-p2_t1)*s17_t1 + (t2_p2-p2_t2)*s17_t2 + (t3_p2-p2_t3)*s17_t3 + l17 * (f_p2 - p2_f) < p2_t1,
-         mu_p3 + (t1_p3-p3_t1)*s17_t1 + (t2_p3-p3_t2)*s17_t2 + (t3_p3-p3_t3)*s17_t3 + l17 * (f_p3 - p3_f) < p3_t1,
+         mu_p1 + (t1_p1-p1_t1)*s17_t1 + (t2_p1-p1_t2)*s17_t2 + (t3_p1-p1_t3)*s17_t3 + l17 * (f_p1 - p1_f) < p1_t2,
+         mu_p2 + (t1_p2-p2_t1)*s17_t1 + (t2_p2-p2_t2)*s17_t2 + (t3_p2-p2_t3)*s17_t3 + l17 * (f_p2 - p2_f) < p2_t2,
+         mu_p3 + (t1_p3-p3_t1)*s17_t1 + (t2_p3-p3_t2)*s17_t2 + (t3_p3-p3_t3)*s17_t3 + l17 * (f_p3 - p3_f) < p3_t2,
       )
    )
 )
 
-# Sequence 18: t3,t1,t1
+# Sequence 18: t1,t3,t1
 s18_t1, s18_t2, s18_t3 = 1, 0, 1
 s.add( l18 >= 0 )
 s.add(
@@ -302,15 +303,28 @@ s.add(
    )
 )
 
-# Sequence 19: t3,t3,t2
-s19_t1, s19_t2, s19_t3 = 0, 0, 2
+# Sequence 19: t3,t1,t1
+s19_t1, s19_t2, s19_t3 = 1, 0, 1
 s.add( l19 >= 0 )
 s.add(
    ForAll([l19],
       Or(
-         mu_p1 + (t1_p1-p1_t1)*s19_t1 + (t2_p1-p1_t2)*s19_t2 + (t3_p1-p1_t3)*s19_t3 + l19 * (f_p1 - p1_f) < p1_t2,
-         mu_p2 + (t1_p2-p2_t1)*s19_t1 + (t2_p2-p2_t2)*s19_t2 + (t3_p2-p2_t3)*s19_t3 + l19 * (f_p2 - p2_f) < p2_t2,
-         mu_p3 + (t1_p3-p3_t1)*s19_t1 + (t2_p3-p3_t2)*s19_t2 + (t3_p3-p3_t3)*s19_t3 + l19 * (f_p3 - p3_f) < p3_t2,
+         mu_p1 + (t1_p1-p1_t1)*s19_t1 + (t2_p1-p1_t2)*s19_t2 + (t3_p1-p1_t3)*s19_t3 + l19 * (f_p1 - p1_f) < p1_t1,
+         mu_p2 + (t1_p2-p2_t1)*s19_t1 + (t2_p2-p2_t2)*s19_t2 + (t3_p2-p2_t3)*s19_t3 + l19 * (f_p2 - p2_f) < p2_t1,
+         mu_p3 + (t1_p3-p3_t1)*s19_t1 + (t2_p3-p3_t2)*s19_t2 + (t3_p3-p3_t3)*s19_t3 + l19 * (f_p3 - p3_f) < p3_t1,
+      )
+   )
+)
+
+# Sequence 20: t3,t3,t2
+s20_t1, s20_t2, s20_t3 = 0, 0, 2
+s.add( l20 >= 0 )
+s.add(
+   ForAll([l20],
+      Or(
+         mu_p1 + (t1_p1-p1_t1)*s20_t1 + (t2_p1-p1_t2)*s20_t2 + (t3_p1-p1_t3)*s20_t3 + l20 * (f_p1 - p1_f) < p1_t2,
+         mu_p2 + (t1_p2-p2_t1)*s20_t1 + (t2_p2-p2_t2)*s20_t2 + (t3_p2-p2_t3)*s20_t3 + l20 * (f_p2 - p2_f) < p2_t2,
+         mu_p3 + (t1_p3-p3_t1)*s20_t1 + (t2_p3-p3_t2)*s20_t2 + (t3_p3-p3_t3)*s20_t3 + l20 * (f_p3 - p3_f) < p3_t2,
       )
    )
 )

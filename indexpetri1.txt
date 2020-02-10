@@ -1,4 +1,4 @@
-﻿places
+places
 2
 p1
 p2
@@ -18,7 +18,7 @@ pre
 1 1 1
 
 post
-0 1 0
+0 0 0
 1 0 0
 
 in_Lf

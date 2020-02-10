@@ -12,7 +12,7 @@ p1_t1, p1_t2, p1_t3 = 1, 1, 0
 p2_t1, p2_t2, p2_t3 = 1, 1, 1
 
 ## tj_pi is the post-condition from transition tj to place pi
-t1_p1, t2_p1, t3_p1 = 0, 1, 0
+t1_p1, t2_p1, t3_p1 = 0, 0, 0
 t1_p2, t2_p2, t3_p2 = 1, 0, 0
 
 ## find the values for the faulty transitions 

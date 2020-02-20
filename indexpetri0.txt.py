@@ -48,11 +48,13 @@ s0_t1, s0_t2, s0_t3 = 0, 0, 0
 s.add( l0 >= 0 )
 s.add(
    Exists([l0],
+      And( Implies(l0 >= 0, 
       And(
          mu_p1 + (t1_p1-p1_t1)*s0_t1 + (t2_p1-p1_t2)*s0_t2 + (t3_p1-p1_t3)*s0_t3 + l0 * (f_p1 - p1_f) >= p1_t3,
          mu_p2 + (t1_p2-p2_t1)*s0_t1 + (t2_p2-p2_t2)*s0_t2 + (t3_p2-p2_t3)*s0_t3 + l0 * (f_p2 - p2_f) >= p2_t3,
          mu_p3 + (t1_p3-p3_t1)*s0_t1 + (t2_p3-p3_t2)*s0_t2 + (t3_p3-p3_t3)*s0_t3 + l0 * (f_p3 - p3_f) >= p3_t3,
       )
+      ))
    )
 )
 
@@ -61,11 +63,13 @@ s1_t1, s1_t2, s1_t3 = 0, 0, 0
 s.add( l1 >= 1 )
 s.add(
    Exists([l1],
+      And( Implies(l1 >= 1, 
       And(
          mu_p1 + (t1_p1-p1_t1)*s1_t1 + (t2_p1-p1_t2)*s1_t2 + (t3_p1-p1_t3)*s1_t3 + l1 * (f_p1 - p1_f) >= p1_t1,
          mu_p2 + (t1_p2-p2_t1)*s1_t1 + (t2_p2-p2_t2)*s1_t2 + (t3_p2-p2_t3)*s1_t3 + l1 * (f_p2 - p2_f) >= p2_t1,
          mu_p3 + (t1_p3-p3_t1)*s1_t1 + (t2_p3-p3_t2)*s1_t2 + (t3_p3-p3_t3)*s1_t3 + l1 * (f_p3 - p3_f) >= p3_t1,
       )
+      ))
    )
 )
 
@@ -74,11 +78,13 @@ s2_t1, s2_t2, s2_t3 = 1, 0, 0
 s.add( l2 >= 1 )
 s.add(
    Exists([l2],
+      And( Implies(l2 >= 1, 
       And(
          mu_p1 + (t1_p1-p1_t1)*s2_t1 + (t2_p1-p1_t2)*s2_t2 + (t3_p1-p1_t3)*s2_t3 + l2 * (f_p1 - p1_f) >= p1_t2,
          mu_p2 + (t1_p2-p2_t1)*s2_t1 + (t2_p2-p2_t2)*s2_t2 + (t3_p2-p2_t3)*s2_t3 + l2 * (f_p2 - p2_f) >= p2_t2,
          mu_p3 + (t1_p3-p3_t1)*s2_t1 + (t2_p3-p3_t2)*s2_t2 + (t3_p3-p3_t3)*s2_t3 + l2 * (f_p3 - p3_f) >= p3_t2,
       )
+      ))
    )
 )
 
@@ -87,11 +93,13 @@ s3_t1, s3_t2, s3_t3 = 1, 1, 0
 s.add( l3 >= 1 )
 s.add(
    Exists([l3],
+      And( Implies(l3 >= 1, 
       And(
          mu_p1 + (t1_p1-p1_t1)*s3_t1 + (t2_p1-p1_t2)*s3_t2 + (t3_p1-p1_t3)*s3_t3 + l3 * (f_p1 - p1_f) >= p1_t1,
          mu_p2 + (t1_p2-p2_t1)*s3_t1 + (t2_p2-p2_t2)*s3_t2 + (t3_p2-p2_t3)*s3_t3 + l3 * (f_p2 - p2_f) >= p2_t1,
          mu_p3 + (t1_p3-p3_t1)*s3_t1 + (t2_p3-p3_t2)*s3_t2 + (t3_p3-p3_t3)*s3_t3 + l3 * (f_p3 - p3_f) >= p3_t1,
       )
+      ))
    )
 )
 
@@ -104,37 +112,43 @@ s4_t1, s4_t2, s4_t3 = 0, 0, 0
 s.add( l4 >= 0 )
 s.add(
    ForAll([l4],
+      And( Implies(l4 >= 0, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s4_t1 + (t2_p1-p1_t2)*s4_t2 + (t3_p1-p1_t3)*s4_t3 + l4 * (f_p1 - p1_f) < p1_t2,
          mu_p2 + (t1_p2-p2_t1)*s4_t1 + (t2_p2-p2_t2)*s4_t2 + (t3_p2-p2_t3)*s4_t3 + l4 * (f_p2 - p2_f) < p2_t2,
          mu_p3 + (t1_p3-p3_t1)*s4_t1 + (t2_p3-p3_t2)*s4_t2 + (t3_p3-p3_t3)*s4_t3 + l4 * (f_p3 - p3_f) < p3_t2,
       )
+      ))
    )
 )
 
-# Sequence 5: t1,t1
+# Sequence 5: f,t1,t1
 s5_t1, s5_t2, s5_t3 = 1, 0, 0
-s.add( l5 >= 0 )
+s.add( l5 >= 1 )
 s.add(
    ForAll([l5],
+      And( Implies(l5 >= 1, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s5_t1 + (t2_p1-p1_t2)*s5_t2 + (t3_p1-p1_t3)*s5_t3 + l5 * (f_p1 - p1_f) < p1_t1,
          mu_p2 + (t1_p2-p2_t1)*s5_t1 + (t2_p2-p2_t2)*s5_t2 + (t3_p2-p2_t3)*s5_t3 + l5 * (f_p2 - p2_f) < p2_t1,
          mu_p3 + (t1_p3-p3_t1)*s5_t1 + (t2_p3-p3_t2)*s5_t2 + (t3_p3-p3_t3)*s5_t3 + l5 * (f_p3 - p3_f) < p3_t1,
       )
+      ))
    )
 )
 
-# Sequence 6: t1,t3
+# Sequence 6: f,t1,t3
 s6_t1, s6_t2, s6_t3 = 1, 0, 0
-s.add( l6 >= 0 )
+s.add( l6 >= 1 )
 s.add(
    ForAll([l6],
+      And( Implies(l6 >= 1, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s6_t1 + (t2_p1-p1_t2)*s6_t2 + (t3_p1-p1_t3)*s6_t3 + l6 * (f_p1 - p1_f) < p1_t3,
          mu_p2 + (t1_p2-p2_t1)*s6_t1 + (t2_p2-p2_t2)*s6_t2 + (t3_p2-p2_t3)*s6_t3 + l6 * (f_p2 - p2_f) < p2_t3,
          mu_p3 + (t1_p3-p3_t1)*s6_t1 + (t2_p3-p3_t2)*s6_t2 + (t3_p3-p3_t3)*s6_t3 + l6 * (f_p3 - p3_f) < p3_t3,
       )
+      ))
    )
 )
 
@@ -143,11 +157,13 @@ s7_t1, s7_t2, s7_t3 = 0, 0, 1
 s.add( l7 >= 0 )
 s.add(
    ForAll([l7],
+      And( Implies(l7 >= 0, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s7_t1 + (t2_p1-p1_t2)*s7_t2 + (t3_p1-p1_t3)*s7_t3 + l7 * (f_p1 - p1_f) < p1_t1,
          mu_p2 + (t1_p2-p2_t1)*s7_t1 + (t2_p2-p2_t2)*s7_t2 + (t3_p2-p2_t3)*s7_t3 + l7 * (f_p2 - p2_f) < p2_t1,
          mu_p3 + (t1_p3-p3_t1)*s7_t1 + (t2_p3-p3_t2)*s7_t2 + (t3_p3-p3_t3)*s7_t3 + l7 * (f_p3 - p3_f) < p3_t1,
       )
+      ))
    )
 )
 
@@ -156,11 +172,13 @@ s8_t1, s8_t2, s8_t3 = 0, 0, 1
 s.add( l8 >= 0 )
 s.add(
    ForAll([l8],
+      And( Implies(l8 >= 0, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s8_t1 + (t2_p1-p1_t2)*s8_t2 + (t3_p1-p1_t3)*s8_t3 + l8 * (f_p1 - p1_f) < p1_t2,
          mu_p2 + (t1_p2-p2_t1)*s8_t1 + (t2_p2-p2_t2)*s8_t2 + (t3_p2-p2_t3)*s8_t3 + l8 * (f_p2 - p2_f) < p2_t2,
          mu_p3 + (t1_p3-p3_t1)*s8_t1 + (t2_p3-p3_t2)*s8_t2 + (t3_p3-p3_t3)*s8_t3 + l8 * (f_p3 - p3_f) < p3_t2,
       )
+      ))
    )
 )
 
@@ -169,37 +187,43 @@ s9_t1, s9_t2, s9_t3 = 0, 0, 1
 s.add( l9 >= 0 )
 s.add(
    ForAll([l9],
+      And( Implies(l9 >= 0, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s9_t1 + (t2_p1-p1_t2)*s9_t2 + (t3_p1-p1_t3)*s9_t3 + l9 * (f_p1 - p1_f) < p1_t3,
          mu_p2 + (t1_p2-p2_t1)*s9_t1 + (t2_p2-p2_t2)*s9_t2 + (t3_p2-p2_t3)*s9_t3 + l9 * (f_p2 - p2_f) < p2_t3,
          mu_p3 + (t1_p3-p3_t1)*s9_t1 + (t2_p3-p3_t2)*s9_t2 + (t3_p3-p3_t3)*s9_t3 + l9 * (f_p3 - p3_f) < p3_t3,
       )
+      ))
    )
 )
 
-# Sequence 10: t1,t2,t2
+# Sequence 10: f,t1,t2,t2
 s10_t1, s10_t2, s10_t3 = 1, 1, 0
-s.add( l10 >= 0 )
+s.add( l10 >= 1 )
 s.add(
    ForAll([l10],
+      And( Implies(l10 >= 1, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s10_t1 + (t2_p1-p1_t2)*s10_t2 + (t3_p1-p1_t3)*s10_t3 + l10 * (f_p1 - p1_f) < p1_t2,
          mu_p2 + (t1_p2-p2_t1)*s10_t1 + (t2_p2-p2_t2)*s10_t2 + (t3_p2-p2_t3)*s10_t3 + l10 * (f_p2 - p2_f) < p2_t2,
          mu_p3 + (t1_p3-p3_t1)*s10_t1 + (t2_p3-p3_t2)*s10_t2 + (t3_p3-p3_t3)*s10_t3 + l10 * (f_p3 - p3_f) < p3_t2,
       )
+      ))
    )
 )
 
-# Sequence 11: t1,t2,t3
+# Sequence 11: f,t1,t2,t3
 s11_t1, s11_t2, s11_t3 = 1, 1, 0
-s.add( l11 >= 0 )
+s.add( l11 >= 1 )
 s.add(
    ForAll([l11],
+      And( Implies(l11 >= 1, 
       Or(
          mu_p1 + (t1_p1-p1_t1)*s11_t1 + (t2_p1-p1_t2)*s11_t2 + (t3_p1-p1_t3)*s11_t3 + l11 * (f_p1 - p1_f) < p1_t3,
          mu_p2 + (t1_p2-p2_t1)*s11_t1 + (t2_p2-p2_t2)*s11_t2 + (t3_p2-p2_t3)*s11_t3 + l11 * (f_p2 - p2_f) < p2_t3,
          mu_p3 + (t1_p3-p3_t1)*s11_t1 + (t2_p3-p3_t2)*s11_t2 + (t3_p3-p3_t3)*s11_t3 + l11 * (f_p3 - p3_f) < p3_t3,
       )
+      ))
    )
 )
 

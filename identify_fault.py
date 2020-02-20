@@ -162,6 +162,7 @@ try:
 		# print('')		
 		print('s.add(')
 		print('   Exists([l%d],'%_sn)
+		print('      And( Implies(l%d >= %d, ' % (_sn,_counter['f']))
 		print('      And(')
 		for _pn in range(n_places):
 			line = '         mu_'+places[_pn]+' + '
@@ -170,6 +171,7 @@ try:
 			line += ' >= '+places[_pn]+'_'+last_transition+','
 			print(line)
 		print('      )')
+		print('      ))')
 		print('   )')
 		print(')')
 		print('')
@@ -198,6 +200,7 @@ try:
 		# print('')		
 		print('s.add(')
 		print('   ForAll([l%d],' % (_sn+sz_Lf))
+		print('      And( Implies(l%d >= %d, ' % (_sn+sz_Lf,_counter['f']))
 		print('      Or(')
 		for _pn in range(n_places):
 			line = '         mu_'+places[_pn]+' + '
@@ -206,6 +209,7 @@ try:
 			line += ' < '+places[_pn]+'_'+last_transition+','
 			print(line)
 		print('      )')
+		print('      ))')
 		print('   )')
 		print(')')
 		print('')

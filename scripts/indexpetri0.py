@@ -201,7 +201,7 @@ s.add(
    )
 )
 
-# Sequence 11: t1,f,t2,t3
+# Sequence 11: f,t1,t2,t3
 s11_t1, s11_t2, s11_t3 = 1, 1, 0
 s.add(
    ForAll([l11],

@@ -158,12 +158,12 @@ try:
 			', '.join(['s'+str(_sn)+'_'+transitions[_tn] for _tn in range(n_trs)]), \
 			', '.join([ str(_counter[transitions[_tn]]) for _tn in range(n_trs)]))
 		)
-		print('s.add( l%d >= %d )' % (_sn,_counter['f']))
+		# print('s.add( l%d >= %d )' % (_sn,_counter['f']))
 		# print('')		
 		print('s.add(')
 		print('   Exists([l%d],'%_sn)
 		print('      And( Implies(l%d >= %d, ' % (_sn,_counter['f']))
-		print('      And(')
+		print('      And(l%d >= %d, ' % (_sn,_counter['f']))
 		for _pn in range(n_places):
 			line = '         mu_'+places[_pn]+' + '
 			line += ' + '.join(['('+transitions[_tn]+'_'+places[_pn]+'-'+places[_pn]+'_'+transitions[_tn]+')*s'+str(_sn)+'_'+transitions[_tn] for _tn in range(n_trs)])
@@ -196,17 +196,18 @@ try:
 			', '.join(['s'+str(_sn+sz_Lf)+'_'+transitions[_tn] for _tn in range(n_trs)]), \
 			', '.join([ str(_counter[transitions[_tn]]) for _tn in range(n_trs)]))
 		)
-		print('s.add( l%d >= %d )' % (_sn+sz_Lf,_counter['f']))
+		# print('s.add( l%d >= %d )' % (_sn+sz_Lf,_counter['f']))
 		# print('')		
 		print('s.add(')
 		print('   ForAll([l%d],' % (_sn+sz_Lf))
 		print('      And( Implies(l%d >= %d, ' % (_sn+sz_Lf,_counter['f']))
 		print('      Or(')
 		for _pn in range(n_places):
-			line = '         mu_'+places[_pn]+' + '
+			line = '         And(l%d >= %d, ' % (_sn+sz_Lf,_counter['f'])
+			line += ' mu_'+places[_pn]+' + '
 			line += ' + '.join(['('+transitions[_tn]+'_'+places[_pn]+'-'+places[_pn]+'_'+transitions[_tn]+')*s'+str(_sn+sz_Lf)+'_'+transitions[_tn] for _tn in range(n_trs)])
 			line += ' + '+'l'+str(_sn+sz_Lf)+' * ('+'f_'+places[_pn]+' - '+places[_pn]+'_f'+')'
-			line += ' < '+places[_pn]+'_'+last_transition+','
+			line += ' < '+places[_pn]+'_'+last_transition+'),'
 			print(line)
 		print('      )')
 		print('      ))')
@@ -214,7 +215,7 @@ try:
 		print(')')
 		print('')
 	print('')
-	print('print(s)')
+	# print('print(s)')
 	print('print(s.check())')
 	print('print(s.model())')	
 	print('#print(s.sexpr());print(\'(check-sat)\\n(get-model)\')')

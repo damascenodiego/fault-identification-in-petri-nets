@@ -125,6 +125,15 @@ try:
 	print('s.add( %s )' % ', '.join('f_%s >= 0' % places[_pn] for _pn in range(n_places)))
 	print('s.add( %s )' % ', '.join('%s_f >= 0' % places[_pn] for _pn in range(n_places)))
 	print('')
+	print('# and no self-loop should exist')
+	print('s.add(')
+	print('   And(')
+	
+	for _pn in range(n_places):
+		a_place = places[_pn]
+		print('      Or(And((f_%s >= 0, %s_f == 0)),And((f_%s == 0, %s_f >= 0)),And((f_%s == 0, %s_f == 0))),' % (a_place,a_place,a_place,a_place,a_place,a_place))
+	print('   )')
+	print(')')
 	print('## l \\in Naturals ; ')
 	# print('%s = Ints(\'%s\')' % (\
 	# 	', '.join(['l'+str(_sn) for _sn in range(sz_Lf)]), \

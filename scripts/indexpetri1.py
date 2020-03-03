@@ -23,6 +23,13 @@ f_p2, p2_f = Ints('f_p2 p2_f')
 s.add( f_p1 >= 0, f_p2 >= 0 )
 s.add( p1_f >= 0, p2_f >= 0 )
 
+# and no self-loop should exist
+s.add(
+   And(
+      Or(And((f_p1 >= 0, p1_f == 0)),And((f_p1 == 0, p1_f >= 0)),And((f_p1 == 0, p1_f == 0))),
+      Or(And((f_p2 >= 0, p2_f == 0)),And((f_p2 == 0, p2_f >= 0)),And((f_p2 == 0, p2_f == 0))),
+   )
+)
 ## l \in Naturals ; 
 l0 = Int('l0')
 l1 = Int('l1')

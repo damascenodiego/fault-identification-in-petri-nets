@@ -26,6 +26,14 @@ f_p3, p3_f = Ints('f_p3 p3_f')
 s.add( f_p1 >= 0, f_p2 >= 0, f_p3 >= 0 )
 s.add( p1_f >= 0, p2_f >= 0, p3_f >= 0 )
 
+# and no self-loop should exist
+s.add(
+   And(
+      Or(And((f_p1 >= 0, p1_f == 0)),And((f_p1 == 0, p1_f >= 0)),And((f_p1 == 0, p1_f == 0))),
+      Or(And((f_p2 >= 0, p2_f == 0)),And((f_p2 == 0, p2_f >= 0)),And((f_p2 == 0, p2_f == 0))),
+      Or(And((f_p3 >= 0, p3_f == 0)),And((f_p3 == 0, p3_f >= 0)),And((f_p3 == 0, p3_f == 0))),
+   )
+)
 ## l \in Naturals ; 
 l0 = Int('l0')
 l1 = Int('l1')
@@ -266,15 +274,15 @@ s.add(
    )
 )
 
-# Sequence 15: t3,t2
+# Sequence 15: f,t3,t2
 s15_t1, s15_t2, s15_t3 = 0, 0, 1
 s.add(
    ForAll([l15],
-      And( Implies(l15 >= 0, 
+      And( Implies(l15 >= 1, 
       Or(
-         And(l15 >= 0,  mu_p1 + (t1_p1-p1_t1)*s15_t1 + (t2_p1-p1_t2)*s15_t2 + (t3_p1-p1_t3)*s15_t3 + l15 * (f_p1 - p1_f) < p1_t2),
-         And(l15 >= 0,  mu_p2 + (t1_p2-p2_t1)*s15_t1 + (t2_p2-p2_t2)*s15_t2 + (t3_p2-p2_t3)*s15_t3 + l15 * (f_p2 - p2_f) < p2_t2),
-         And(l15 >= 0,  mu_p3 + (t1_p3-p3_t1)*s15_t1 + (t2_p3-p3_t2)*s15_t2 + (t3_p3-p3_t3)*s15_t3 + l15 * (f_p3 - p3_f) < p3_t2),
+         And(l15 >= 1,  mu_p1 + (t1_p1-p1_t1)*s15_t1 + (t2_p1-p1_t2)*s15_t2 + (t3_p1-p1_t3)*s15_t3 + l15 * (f_p1 - p1_f) < p1_t2),
+         And(l15 >= 1,  mu_p2 + (t1_p2-p2_t1)*s15_t1 + (t2_p2-p2_t2)*s15_t2 + (t3_p2-p2_t3)*s15_t3 + l15 * (f_p2 - p2_f) < p2_t2),
+         And(l15 >= 1,  mu_p3 + (t1_p3-p3_t1)*s15_t1 + (t2_p3-p3_t2)*s15_t2 + (t3_p3-p3_t3)*s15_t3 + l15 * (f_p3 - p3_f) < p3_t2),
       )
       ))
    )
@@ -322,29 +330,29 @@ s.add(
    )
 )
 
-# Sequence 19: t3,t1,t1
+# Sequence 19: f,t3,t1,t1
 s19_t1, s19_t2, s19_t3 = 1, 0, 1
 s.add(
    ForAll([l19],
-      And( Implies(l19 >= 0, 
+      And( Implies(l19 >= 1, 
       Or(
-         And(l19 >= 0,  mu_p1 + (t1_p1-p1_t1)*s19_t1 + (t2_p1-p1_t2)*s19_t2 + (t3_p1-p1_t3)*s19_t3 + l19 * (f_p1 - p1_f) < p1_t1),
-         And(l19 >= 0,  mu_p2 + (t1_p2-p2_t1)*s19_t1 + (t2_p2-p2_t2)*s19_t2 + (t3_p2-p2_t3)*s19_t3 + l19 * (f_p2 - p2_f) < p2_t1),
-         And(l19 >= 0,  mu_p3 + (t1_p3-p3_t1)*s19_t1 + (t2_p3-p3_t2)*s19_t2 + (t3_p3-p3_t3)*s19_t3 + l19 * (f_p3 - p3_f) < p3_t1),
+         And(l19 >= 1,  mu_p1 + (t1_p1-p1_t1)*s19_t1 + (t2_p1-p1_t2)*s19_t2 + (t3_p1-p1_t3)*s19_t3 + l19 * (f_p1 - p1_f) < p1_t1),
+         And(l19 >= 1,  mu_p2 + (t1_p2-p2_t1)*s19_t1 + (t2_p2-p2_t2)*s19_t2 + (t3_p2-p2_t3)*s19_t3 + l19 * (f_p2 - p2_f) < p2_t1),
+         And(l19 >= 1,  mu_p3 + (t1_p3-p3_t1)*s19_t1 + (t2_p3-p3_t2)*s19_t2 + (t3_p3-p3_t3)*s19_t3 + l19 * (f_p3 - p3_f) < p3_t1),
       )
       ))
    )
 )
 
-# Sequence 20: t3,t3,t2
+# Sequence 20: f,t3,t3,t2
 s20_t1, s20_t2, s20_t3 = 0, 0, 2
 s.add(
    ForAll([l20],
-      And( Implies(l20 >= 0, 
+      And( Implies(l20 >= 1, 
       Or(
-         And(l20 >= 0,  mu_p1 + (t1_p1-p1_t1)*s20_t1 + (t2_p1-p1_t2)*s20_t2 + (t3_p1-p1_t3)*s20_t3 + l20 * (f_p1 - p1_f) < p1_t2),
-         And(l20 >= 0,  mu_p2 + (t1_p2-p2_t1)*s20_t1 + (t2_p2-p2_t2)*s20_t2 + (t3_p2-p2_t3)*s20_t3 + l20 * (f_p2 - p2_f) < p2_t2),
-         And(l20 >= 0,  mu_p3 + (t1_p3-p3_t1)*s20_t1 + (t2_p3-p3_t2)*s20_t2 + (t3_p3-p3_t3)*s20_t3 + l20 * (f_p3 - p3_f) < p3_t2),
+         And(l20 >= 1,  mu_p1 + (t1_p1-p1_t1)*s20_t1 + (t2_p1-p1_t2)*s20_t2 + (t3_p1-p1_t3)*s20_t3 + l20 * (f_p1 - p1_f) < p1_t2),
+         And(l20 >= 1,  mu_p2 + (t1_p2-p2_t1)*s20_t1 + (t2_p2-p2_t2)*s20_t2 + (t3_p2-p2_t3)*s20_t3 + l20 * (f_p2 - p2_f) < p2_t2),
+         And(l20 >= 1,  mu_p3 + (t1_p3-p3_t1)*s20_t1 + (t2_p3-p3_t2)*s20_t2 + (t3_p3-p3_t3)*s20_t3 + l20 * (f_p3 - p3_f) < p3_t2),
       )
       ))
    )

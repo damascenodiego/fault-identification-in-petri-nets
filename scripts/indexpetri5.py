@@ -5,15 +5,15 @@ from z3 import *
 # we have that
 s = Solver()
 ## mu0_px is the initial marking for place px; 
-mu_p1, mu_p2 = 1, 1
+mu_p1, mu_p2 = 2, 0
 
 ## pi_tj is the pre-condition from place pi to transition tj
-p1_t1, p1_t2, p1_t3 = 1, 1, 0
-p2_t1, p2_t2, p2_t3 = 1, 1, 1
+p1_t1, p1_t2, p1_t3 = 2, 2, 0
+p2_t1, p2_t2, p2_t3 = 0, 0, 1
 
 ## tj_pi is the post-condition from transition tj to place pi
 t1_p1, t2_p1, t3_p1 = 0, 0, 0
-t1_p2, t2_p2, t3_p2 = 1, 0, 0
+t1_p2, t2_p2, t3_p2 = 1, 1, 0
 
 ## find the values for the faulty transitions 
 f_p1, p1_f = Ints('f_p1 p1_f')
@@ -125,38 +125,38 @@ s.add(
    )
 )
 
-# Sequence 6: t3,t1
-s6_t1, s6_t2, s6_t3 = 0, 0, 1
-s.add(
-   Exists([l6],
-      And( Implies(l6 >= 0, 
-      And(l6 >= 0, 
-         mu_p1 + (t1_p1-p1_t1)*s6_t1 + (t2_p1-p1_t2)*s6_t2 + (t3_p1-p1_t3)*s6_t3 + l6 * (f_p1 - p1_f) >= p1_t1,
-         mu_p2 + (t1_p2-p2_t1)*s6_t1 + (t2_p2-p2_t2)*s6_t2 + (t3_p2-p2_t3)*s6_t3 + l6 * (f_p2 - p2_f) >= p2_t1,
-      )
-      ))
-   )
-)
-
-# Sequence 7: t3,t2
-s7_t1, s7_t2, s7_t3 = 0, 0, 1
-s.add(
-   Exists([l7],
-      And( Implies(l7 >= 0, 
-      And(l7 >= 0, 
-         mu_p1 + (t1_p1-p1_t1)*s7_t1 + (t2_p1-p1_t2)*s7_t2 + (t3_p1-p1_t3)*s7_t3 + l7 * (f_p1 - p1_f) >= p1_t2,
-         mu_p2 + (t1_p2-p2_t1)*s7_t1 + (t2_p2-p2_t2)*s7_t2 + (t3_p2-p2_t3)*s7_t3 + l7 * (f_p2 - p2_f) >= p2_t2,
-      )
-      ))
-   )
-)
-
 
 ########################################
 ## \not \in L^f (Equation 4.2)
 ########################################
-# Sequence 8: t1,t1
-s8_t1, s8_t2, s8_t3 = 1, 0, 0
+# Sequence 6: t1,t1
+s6_t1, s6_t2, s6_t3 = 1, 0, 0
+s.add(
+   ForAll([l6],
+      And( Implies(l6 >= 0, 
+      Or(
+         And(l6 >= 0,  mu_p1 + (t1_p1-p1_t1)*s6_t1 + (t2_p1-p1_t2)*s6_t2 + (t3_p1-p1_t3)*s6_t3 + l6 * (f_p1 - p1_f) < p1_t1),
+         And(l6 >= 0,  mu_p2 + (t1_p2-p2_t1)*s6_t1 + (t2_p2-p2_t2)*s6_t2 + (t3_p2-p2_t3)*s6_t3 + l6 * (f_p2 - p2_f) < p2_t1),
+      )
+      ))
+   )
+)
+
+# Sequence 7: t1,t2
+s7_t1, s7_t2, s7_t3 = 1, 0, 0
+s.add(
+   ForAll([l7],
+      And( Implies(l7 >= 0, 
+      Or(
+         And(l7 >= 0,  mu_p1 + (t1_p1-p1_t1)*s7_t1 + (t2_p1-p1_t2)*s7_t2 + (t3_p1-p1_t3)*s7_t3 + l7 * (f_p1 - p1_f) < p1_t2),
+         And(l7 >= 0,  mu_p2 + (t1_p2-p2_t1)*s7_t1 + (t2_p2-p2_t2)*s7_t2 + (t3_p2-p2_t3)*s7_t3 + l7 * (f_p2 - p2_f) < p2_t2),
+      )
+      ))
+   )
+)
+
+# Sequence 8: t2,t1
+s8_t1, s8_t2, s8_t3 = 0, 1, 0
 s.add(
    ForAll([l8],
       And( Implies(l8 >= 0, 
@@ -168,8 +168,8 @@ s.add(
    )
 )
 
-# Sequence 9: t1,t2
-s9_t1, s9_t2, s9_t3 = 1, 0, 0
+# Sequence 9: t2,t2
+s9_t1, s9_t2, s9_t3 = 0, 1, 0
 s.add(
    ForAll([l9],
       And( Implies(l9 >= 0, 
@@ -181,27 +181,27 @@ s.add(
    )
 )
 
-# Sequence 10: t2,t1
-s10_t1, s10_t2, s10_t3 = 0, 1, 0
+# Sequence 10: f,t3,t1
+s10_t1, s10_t2, s10_t3 = 0, 0, 1
 s.add(
    ForAll([l10],
-      And( Implies(l10 >= 0, 
+      And( Implies(l10 >= 1, 
       Or(
-         And(l10 >= 0,  mu_p1 + (t1_p1-p1_t1)*s10_t1 + (t2_p1-p1_t2)*s10_t2 + (t3_p1-p1_t3)*s10_t3 + l10 * (f_p1 - p1_f) < p1_t1),
-         And(l10 >= 0,  mu_p2 + (t1_p2-p2_t1)*s10_t1 + (t2_p2-p2_t2)*s10_t2 + (t3_p2-p2_t3)*s10_t3 + l10 * (f_p2 - p2_f) < p2_t1),
+         And(l10 >= 1,  mu_p1 + (t1_p1-p1_t1)*s10_t1 + (t2_p1-p1_t2)*s10_t2 + (t3_p1-p1_t3)*s10_t3 + l10 * (f_p1 - p1_f) < p1_t1),
+         And(l10 >= 1,  mu_p2 + (t1_p2-p2_t1)*s10_t1 + (t2_p2-p2_t2)*s10_t2 + (t3_p2-p2_t3)*s10_t3 + l10 * (f_p2 - p2_f) < p2_t1),
       )
       ))
    )
 )
 
-# Sequence 11: t2,t2
-s11_t1, s11_t2, s11_t3 = 0, 1, 0
+# Sequence 11: f,t3,t2
+s11_t1, s11_t2, s11_t3 = 0, 0, 1
 s.add(
    ForAll([l11],
-      And( Implies(l11 >= 0, 
+      And( Implies(l11 >= 1, 
       Or(
-         And(l11 >= 0,  mu_p1 + (t1_p1-p1_t1)*s11_t1 + (t2_p1-p1_t2)*s11_t2 + (t3_p1-p1_t3)*s11_t3 + l11 * (f_p1 - p1_f) < p1_t2),
-         And(l11 >= 0,  mu_p2 + (t1_p2-p2_t1)*s11_t1 + (t2_p2-p2_t2)*s11_t2 + (t3_p2-p2_t3)*s11_t3 + l11 * (f_p2 - p2_f) < p2_t2),
+         And(l11 >= 1,  mu_p1 + (t1_p1-p1_t1)*s11_t1 + (t2_p1-p1_t2)*s11_t2 + (t3_p1-p1_t3)*s11_t3 + l11 * (f_p1 - p1_f) < p1_t2),
+         And(l11 >= 1,  mu_p2 + (t1_p2-p2_t1)*s11_t1 + (t2_p2-p2_t2)*s11_t2 + (t3_p2-p2_t3)*s11_t3 + l11 * (f_p2 - p2_f) < p2_t2),
       )
       ))
    )
